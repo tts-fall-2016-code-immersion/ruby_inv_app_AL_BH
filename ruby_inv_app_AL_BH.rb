@@ -15,11 +15,13 @@ beer_arr = [
     {"Queen Cersei Blonde" => 110}, 
     {"Arsenal Brown Ale" => 120}]
 
-def view_inv(beer_hsh)
+def view_inv(beer_arr)
     puts "Curent Inventory:"
-    beer_hsh.each do |beer|
-        puts "#{beer[:name]}"
+    beer_arr.each do |beer|
+        beer.each_pair do |name, qty|
+            puts "#{name}: #{qty}"
+        end
     end
 end
 
-view_inv(beer_hsh)
+view_inv(beer_arr)
