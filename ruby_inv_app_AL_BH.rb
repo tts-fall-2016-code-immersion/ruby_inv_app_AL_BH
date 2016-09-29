@@ -15,6 +15,8 @@ beer_arr = [
     {"Queen Cersei Blonde" => 110}, 
     {"Arsenal Brown Ale" => 120}]
 
+action_arr = ["view", "update", "add", "remove"]
+
 def view_inv(beer_arr)
     puts "Curent Inventory:"
     beer_arr.each do |beer|
@@ -24,4 +26,28 @@ def view_inv(beer_arr)
     end
 end
 
-view_inv(beer_arr)
+
+def activity_loop(beer_arr,action_arr)
+    exit = 0
+    while exit == 0
+        puts "What would you like to do? (view, update, add, remove, quit)"
+        response = gets.chomp.downcase
+        if response == "view"
+            view_inv(beer_arr)
+        elsif response == "update"
+            #Add update method
+        elsif response == "add"
+            #Add add method
+        elsif response == "remove"
+            #Add remove method
+        elsif response == "quit"
+            puts "Have a nice day!"
+            exit = 1
+        else
+            "Not a valid input, please enter again. (view, update, add, remove, quit)"
+        end
+    end
+end
+
+
+activity_loop(beer_arr, action_arr)
