@@ -1,7 +1,7 @@
 # AL_BH Inventory App
 # Using Small Batch beers for items
 
-beer_arr = [
+item_arr = [
     {"Mr. Lemon Man" => 10}, 
     {"Player to be Named Later" => 20}, 
     {"Hefe Vice Wheat" => 30}, 
@@ -17,23 +17,32 @@ beer_arr = [
 
 action_arr = ["view", "update", "add", "remove"]
 
-def view_inv(beer_arr)
+def view_inv(item_arr)
     puts "Curent Inventory:"
-    beer_arr.each do |beer|
+    item_arr.each do |beer|
         beer.each_pair do |name, qty|
             puts "#{name}: #{qty}"
         end
     end
 end
 
+def update_inv(item_arr)
+    puts "Update which item?"
+    view_inv(item_arr)
+    update = gets.chomp.downcase
+    puts "What is the new value?"
+    update_val = gets.chomp.to_i
+    #Need to locate correct item key and change value
+end
 
-def activity_loop(beer_arr,action_arr)
+
+def activity_loop(item_arr,action_arr)
     exit = 0
     while exit == 0
         puts "What would you like to do? (view, update, add, remove, quit)"
         response = gets.chomp.downcase
         if response == "view"
-            view_inv(beer_arr)
+            view_inv(item_arr)
         elsif response == "update"
             #Add update method
         elsif response == "add"
@@ -44,10 +53,10 @@ def activity_loop(beer_arr,action_arr)
             puts "Have a nice day!"
             exit = 1
         else
-            "Not a valid input, please enter again. (view, update, add, remove, quit)"
+            puts "Not a valid input, please try again."
         end
     end
 end
 
 
-activity_loop(beer_arr, action_arr)
+activity_loop(item_arr, action_arr)
