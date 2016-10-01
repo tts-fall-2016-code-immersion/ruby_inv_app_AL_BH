@@ -24,6 +24,7 @@ def view_inv(item_arr)
             puts "#{name}: #{qty}"
         end
     end
+    return nil
 end
 
 def update_inv(item_arr)
@@ -35,12 +36,29 @@ def update_inv(item_arr)
     item_arr.each_with_index do |item, i|
         item.each_pair do |key, val|
             if key == update
-                item_arr[i][val] = update_val
-                puts "#{key} inventory updated to #{val}"
+                item_arr[i][key] = update_val
+                puts "#{key} inventory updated to #{item_arr[i][key]}"
             end
         end
     end
+    return item_arr
 end
+
+def add_inv()
+    puts "Name of new item?"
+    add_name = gets.chomp
+    puts "Inventory of #{add_name}?"
+    add_val = gets.chomp.to_i
+    add_hsh = {add_name => add_val}
+    return add_hsh
+end
+
+def remove_inv(item_arr)
+
+end
+
+
+
 
 def activity_loop(item_arr,action_arr)
     exit = 0
@@ -50,9 +68,9 @@ def activity_loop(item_arr,action_arr)
         if response == "view"
             view_inv(item_arr)
         elsif response == "update"
-            update_inv(item_arr)
+            item_arr = update_inv(item_arr)
         elsif response == "add"
-            #Add add method
+            item_arr.push(add_inv()) 
         elsif response == "remove"
             #Add remove method
         elsif response == "quit"
