@@ -19,8 +19,8 @@ action_arr = ["view", "update", "add", "remove"]
 
 def view_inv(item_arr)
     puts "Curent Inventory:"
-    item_arr.each do |beer|
-        beer.each_pair do |name, qty|
+    item_arr.each do |item|
+        item.each_pair do |name, qty|
             puts "#{name}: #{qty}"
         end
     end
@@ -29,12 +29,18 @@ end
 def update_inv(item_arr)
     puts "Update which item?"
     view_inv(item_arr)
-    update = gets.chomp.downcase
+    update = gets.chomp
     puts "What is the new value?"
     update_val = gets.chomp.to_i
-    #Need to locate correct item key and change value
+    item_arr.each_with_index do |item, i|
+        item.each_pair do |key, val|
+            if key == update
+                item_arr[i][val] = update_val
+                puts "#{key} inventory updated to #{val}"
+            end
+        end
+    end
 end
-
 
 def activity_loop(item_arr,action_arr)
     exit = 0
@@ -44,7 +50,7 @@ def activity_loop(item_arr,action_arr)
         if response == "view"
             view_inv(item_arr)
         elsif response == "update"
-            #Add update method
+            update_inv(item_arr)
         elsif response == "add"
             #Add add method
         elsif response == "remove"
@@ -57,6 +63,5 @@ def activity_loop(item_arr,action_arr)
         end
     end
 end
-
 
 activity_loop(item_arr, action_arr)
