@@ -54,11 +54,19 @@ def add_inv()
 end
 
 def remove_inv(item_arr)
-
+    puts "Remove which item?"
+    view_inv(item_arr)
+    remove_name = gets.chomp
+    item_arr.each_with_index do |item,i|
+        item.each_pair do |key, val|
+            if key == remove_name
+                puts "#{remove_name} has been deleted."
+                item_arr.delete_at(i)
+            end
+        end
+    end
+    return item_arr
 end
-
-
-
 
 def activity_loop(item_arr,action_arr)
     exit = 0
@@ -72,7 +80,7 @@ def activity_loop(item_arr,action_arr)
         elsif response == "add"
             item_arr.push(add_inv()) 
         elsif response == "remove"
-            #Add remove method
+            item_arr = remove_inv(item_arr)
         elsif response == "quit"
             puts "Have a nice day!"
             exit = 1
